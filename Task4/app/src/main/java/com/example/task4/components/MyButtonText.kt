@@ -13,15 +13,14 @@ import androidx.compose.ui.tooling.preview.Preview
 //Ejercicio 2.1
 @Composable
 fun MyButtonText(){
-    var state by remember { mutableStateOf(false) }
-    val buttonContentOnline = "Pulsa aquí"
+    var buttonContent by remember { mutableStateOf("Pulsa aquí!") }
     val buttonContentOffline = "Botón pulsado!"
     Column()
     {
         Button(
-            onClick = { state = true }
+            onClick = { buttonContent = buttonContentOffline },
         ) {
-            Text(text = if (state) buttonContentOffline else buttonContentOnline)
+            Text(buttonContent)
         }
     }
 }

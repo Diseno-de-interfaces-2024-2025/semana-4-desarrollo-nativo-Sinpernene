@@ -18,18 +18,26 @@ import androidx.compose.ui.unit.dp
 //Ejercicio 2.2
 @Composable
 fun MyButtonColor(content: String, color: Color) {
-    var state by remember { mutableStateOf(false) }
+    var buttonContent by remember { mutableStateOf("Pulsa aquí!") }
+    var containerColor by remember { mutableStateOf(Color.DarkGray) }
+    var contentColor by remember { mutableStateOf(Color.White) }
+    var borderStroke by remember { mutableStateOf(1.dp) }
+    var roundedCornerShapeSize by remember { mutableStateOf(20.dp) }
     Column {
         Button(
-            onClick = { state = true },
+            onClick = { buttonContent = content
+                      containerColor = color
+                      contentColor = Color.Black
+                      borderStroke = 3.dp
+                      roundedCornerShapeSize = 4.dp},
             colors = ButtonDefaults.buttonColors(
-                contentColor = if (state) Color.Black else Color.White,
-                containerColor = if (state) color else Color.DarkGray
+                contentColor = contentColor,
+                containerColor = containerColor
             ),
-            border = BorderStroke(if (state) 3.dp else 1.dp, Color.Black),
-            shape = RoundedCornerShape(if (state) 4.dp else 20.dp)
+            border = BorderStroke(borderStroke, Color.Black),
+            shape = RoundedCornerShape(roundedCornerShapeSize)
         ){
-            Text(text = if (state) content else "Pulsa aquí")
+            Text(buttonContent)
         }
     }
 }
